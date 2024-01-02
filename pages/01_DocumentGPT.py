@@ -17,7 +17,7 @@ if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
 
-@st.cache_data(show_spinner="Embedding file . . .")
+@st.cache_data(show_spinner="Embedding the file . . .")
 def embed_file(file):
     file_content = file.read()
     file_path = f"./.cache/files/{file.name}"
