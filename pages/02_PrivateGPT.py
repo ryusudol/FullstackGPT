@@ -83,10 +83,10 @@ st.markdown("""
     PrivateGPT enables users to upload their documents to local storage so that users can upload their documents without any concerns about AI servers being aware of the contents of their documents.
 """)
 st.divider()
-st.subheader("AI Model")
+st.subheader("Choose an AI model")
 mode = st.selectbox("Choose a model you want", options=["Mistral", "Falcon", "Llama2"])
 st.write("###")
-st.subheader("File Uploading")
+st.subheader("Upload your document")
 file = st.file_uploader("Upload your document. Available types: .txt .pdf .docx", type=["pdf", "txt", "docx"])
 st.divider()
 
