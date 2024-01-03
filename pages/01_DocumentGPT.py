@@ -36,20 +36,16 @@ def embed_file(file):
     vectorstore = FAISS.from_documents(docs, cached_embeddings)
     retriever = vectorstore.as_retriever()
     return retriever
-
 def save_message(message, role):
     st.session_state["messages"].append({"message": message, "role": role})
-
 def send_message(message, role, save=True):
     with st.chat_message(role):
         st.markdown(message)
     if save:
         save_message(message, role)
-
 def paint_history():
     for message in st.session_state["messages"]:
         send_message(message["message"], message["role"], save=False)
-
 def format_docs(docs):
     return "\n\n".join(document.page_content for document in docs)
 
@@ -98,18 +94,16 @@ llm = ChatOpenAI(
 st.title("DocumentGPT")
 
 st.markdown("""
-    Welcome!
-
-    Use the chatbot to ask questions to an AI about your files!
-    
-    Upload your files on the sidebar.
+    ### Welcome to DocumentGPT!
+    DocumentGPT enables users to upload their files and ask questions about the documents.
 """)
-
-with st.sidebar:
-    file = st.file_uploader(
-        "Upload a .txt .pdf or .docx file",
-        type=["pdf", "txt", "docx"]
-    )
+st.divider()
+st.subheader("Upload your document")
+file = st.file_uploader(
+    "Upload a .txt .pdf or .docx file",
+    type=["pdf", "txt", "docx"]
+)
+st.divider()
 
 if file:
     retriever = embed_file(file)
